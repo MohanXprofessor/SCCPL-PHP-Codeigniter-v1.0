@@ -6,6 +6,7 @@ class Model_assessment extends CI_Model
     public function __construct()
     {
         parent::__construct();
+        $this->load->database();
     }
 
 
@@ -27,5 +28,12 @@ class Model_assessment extends CI_Model
         $this->db->from('subject');
         $query = $this->db->get();
         return $query->result(); // Returns as an array of objects
+    }
+
+    // get all record 
+    public function get_all_assessments()
+    {
+        $query = $this->db->get('assessments'); // SELECT * FROM assessments
+        return $query->result_array(); // Return as an array
     }
 }

@@ -24,19 +24,19 @@ class Assessments extends Admin_Controller
     public function create_assessment()
     {
         // Load the upload library
-        $this->load->library('upload');
+        $this->load->library('upload', $config);
 
         // File upload configuration
-        $config['upload_path'] = './uploads/assessments/';
-        $config['allowed_types'] = 'pdf|doc|docx|jpg|png';
+        $config['upload_path'] = './uploads';
+        $config['allowed_types'] = 'pdf|doc|docx|csv|xlsx';
         $config['max_size'] = 2048; // 2MB
 
         $this->upload->initialize($config);
 
-        if ($this->upload->do_upload('userfile')) {
+        if ($this->upload->do_upload('file')) {
             // If file uploaded successfully
             $uploadData = $this->upload->data();
-            $file_path = 'uploads/assessments/' . $uploadData['file_name'];
+            $file_path = './uploads/' . $uploadData['file_name'];
         } else {
             // If file upload failed
             $file_path = null;
@@ -67,5 +67,16 @@ class Assessments extends Admin_Controller
 
         // Redirect back to the form or list
         // redirect('Assessment');
+    }
+
+
+
+
+    // TO Display DTATA
+
+    public function show()
+    {
+        $data['assessments'] = $this->Model_assessment->get_all_assessments(); // Get data from model
+        $this->render_template('assessments/display', $this->data);
     }
 }

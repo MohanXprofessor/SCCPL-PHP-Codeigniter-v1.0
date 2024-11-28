@@ -125,6 +125,8 @@
 					</ul>
 				</li>
 			<?php endif; ?>
+
+
 			<?php if (in_array('updateScreeningTest', $user_permission) || in_array('viewScreeningTest', $user_permission) || in_array('deleteScreeningTest', $user_permission)): ?>
 				<li class="treeview" id="orderNav">
 					<a href="#">
@@ -163,7 +165,7 @@
 								<li id="manageOrdersNav"><a href="<?php echo base_url('enrollment') ?>"><i
 											class="fa fa-circle-o"></i> Manage
 										Enrollment</a></li>
-								<li id="manageOrdersNav"><a style="display:flex:align-items:center"
+								<li id="manageOrdersNav"><a style="display:flex;align-items:center"
 										href="<?php echo base_url('enrollment/enrollment_requests') ?>"><i
 											class="fa fa-circle-o"></i> Manage
 										Enrollment Requests
@@ -534,10 +536,70 @@
 							<span>Organization</span></a></li>
 				<?php endif; ?>
 
-				<?php if (in_array('viewProfile', $user_permission)): ?>
-					<li><a href="<?php echo base_url('assessments/index') ?>"><i class="fa fa-user-o"></i> <span>Assessments</span></a>
+
+				<!-- kdk  Assessment Tab  -->
+
+
+				<!-- <li class="treeview" id="mainProductNav">
+					<a href="#">
+						<i class="fa fa-user-o"></i>
+						<span>Assessment</span>
+						<span class="pull-right-container">
+							<i class="fa fa-angle-left pull-right"></i>
+						</span>
+					</a>
+					<ul class="treeview-menu">
+						<?php if (in_array('addSubject', $user_permission)): ?>
+							<li id="addProductNav"><a href="<?php echo base_url('assessments/index') ?>"><i
+										class="fa fa-circle-o"></i> Add Assessment</a></li>
+						<?php endif; ?>
+						<?php if (in_array('updateProduct', $user_permission) || in_array('viewSubject', $user_permission) || in_array('deleteSubject', $user_permission)): ?>
+							<li id="manageProductNav"><a href="<?php echo base_url('assessments/index') ?>"><i
+										class="fa fa-circle-o"></i> Add Assessment</a>
+							</li>
+
+							<li id="manageProductNav"><a href="<?php echo base_url('assessments/show_assessment') ?>"><i
+										class="fa fa-circle-o"></i> Manage Assessment</a>
+							</li>
+
+						<?php endif; ?>
+					</ul>
+				</li> -->
+
+
+
+				<!-- ork  -->
+
+				<?php if (in_array('createOrder', $user_permission) || in_array('updateOrder', $user_permission) || in_array('viewOrder', $user_permission) || in_array('deleteOrder', $user_permission)): ?>
+					<li class="treeview" id="orderNav">
+						<a href="#">
+							<i class="fa fa-user-o"></i>
+							<span>Assessment</span>
+							<span class="pull-right-container">
+								<i class="fa fa-angle-left pull-right"></i>
+							</span>
+						</a>
+						<ul class="treeview-menu">
+							<?php if (in_array('createOrder', $user_permission)): ?>
+								<li id="addProductNav"><a href="<?php echo base_url('assessments/index') ?>"><i
+											class="fa fa-circle-o"></i>
+										Create Assessments</a></li>
+							<?php endif; ?>
+							<?php if (in_array('updateOrder', $user_permission) || in_array('viewOrder', $user_permission) || in_array('deleteOrder', $user_permission)): ?>
+								<li id="manageProductNav"><a href="<?php echo base_url('Assessments/show') ?>"><i
+											class="fa fa-circle-o"></i>
+										Manage
+										Assessment</a></li>
+							<?php endif; ?>
+						</ul>
 					</li>
 				<?php endif; ?>
+
+
+
+				<!-- end  -->
+
+
 				<!-- <li class="header">Settings</li> -->
 
 				<?php if (in_array('viewProfile', $user_permission)): ?>
