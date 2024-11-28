@@ -1,0 +1,26 @@
+/*
+*
+* Author: Akash K Fulari
+* Contact-mail: akashfulari31@gmail.com
+* Description: ________________your_description_here_________________
+* Created: 2024-03-31 15:12:24
+ Last Modification Date: 2024-05-07 16:02:59
+*
+**/
+
+table.dataTable th:nth-child(15),
+table.dataTable td:nth-child(15),
+table.dataTable th:nth-child(16),
+table.dataTable td:nth-child(16),
+table.dataTable th:nth-child(17),
+table.dataTable td:nth-child(17),
+table.dataTable th:nth-child(18),
+table.dataTable td:nth-child(18),
+table.dataTable th:nth-child(19),
+table.dataTable td:nth-child(19),
+table.dataTable th:nth-child(20),
+table.dataTable td:nth-child(20),
+table.dataTable th:nth-child(21),
+table.dataTable td:nth-child(21) {
+    display: none !important;
+}
