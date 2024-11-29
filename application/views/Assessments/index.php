@@ -214,9 +214,9 @@
 
                         <select name="assignment_type" id="assignment_type" required>
                             <option selected disabled>Assignment_Type</option>
-                            <option value="Homework">Homework</option>
+                            <option value="MCQ">M C Q</option>
                             <option value="Quiz">Quiz</option>
-                            <option value="Project">Project</option>
+                            
                         </select>
                     </div>
 
@@ -243,7 +243,7 @@
                     </div>
 
                     <div class="col-md-5 form-group" id="facultyElement">
-                        <label for="store">Faculty Id</label>
+                        <label for="store">Faculty</label>
                         <select class="form-control" id="availability" name="faculty_id" required>
                             <?php
 

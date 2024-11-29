@@ -33,7 +33,11 @@ class Model_assessment extends CI_Model
     // get all record 
     public function get_all_assessments()
     {
-        $query = $this->db->get('assessments'); // SELECT * FROM assessments
-        return $query->result_array(); // Return as an array
+        // Fetch all rows from the assessments table
+        // $query = $this->db->get('assessments');
+        //  return $query->result(); // Return as an array
+        // print_r($query->result());
+
+        return $this->db->select('*')->from('assessments')->get()->result();
     }
 }

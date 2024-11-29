@@ -5,17 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create |</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .table-responsive {
+            overflow-x: auto;
+            /* Enable horizontal scroll */
+        }
+    </style>
 </head>
 
 <body>
-
-
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Manage Assessment
+                Assessment
                 <small>Manage Assessment</small>
             </h1>
             <ol class="breadcrumb">
@@ -25,47 +30,60 @@
         </section>
         <!-- Main content -->
         <section class="content">
-
             <div class="container mt-5">
-                <h1 class="text-center">Assessments List</h1>
-                <table class="table table-bordered table-striped mt-3">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th>ID</th>
-                            <th>Project_id</th>
-                            <th>Assessment Date</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php if (!empty($assessments)): ?>
-                            <?php foreach ($assessments as $assessment): ?>
-                                <tr>
-                                    <td><?= $assessment['id']; ?></td>
-                                    <td><?= $assessment['project_id']; ?></td>
-                                    <td><?= $assessment['course_id']; ?></td>
-                                    <td><?= $assessment['subject_id']; ?></td>
-                                    <td><?= $assessment['assignment_type']; ?></td>
-                                    <td><?= $assessment['assignment_marks']; ?></td>
-                                    <td><?= $assessment['assignment_passing']; ?></td>
-                                    <td><?= $assessment['date']; ?></td>
-
-
-
-
-                                    <td><?= $assessment['assessment_date']; ?></td>
-                                    <td><?= $assessment['status']; ?></td>
-                                </tr>
-                            <?php endforeach; ?>
-                        <?php else: ?>
+                <h1 class="text-center">Assessment title</h1>
+                <!-- Responsive Table Wrapper -->
+                <?php foreach ($assess as $row): ?>
+                    <p><?php echo $row->faculty_id; ?></p> <!-- Ensure correct casing -->
+                <?php endforeach; ?>
+                <div class="table-responsive">
+                    <table id="manageTable"
+                        class="table table-bordered table-striped responsive display nowrap table-hover">
+                        <thead class="thead-dark">
                             <tr>
-                                <td colspan="4" class="text-center">No assessments found</td>
+                                <th>ID</th>
+                                <th>Project_id</th>
+                                <th>course_id</th>
+                                <th>subject_id</th>
+                                <th>assignment_type</th>
+                                <th>assignment_marks</th>
+                                <th>passing_marks</th>
+                                <th>Date</th>
+                                <th>Faculty_id</th>
+                                <th>file_path</th>
+                                <th colspan="2">Action</th>
                             </tr>
-                        <?php endif; ?>
-                    </tbody>
-                </table>
-            </div>
+                        </thead>
+                        <tbody>
 
+
+                            <?php if (!empty($assess)): ?>
+                                <?php foreach ($assess as $assessment): ?>
+                                    <tr>
+                                        <td><?= $assessment->id; ?></td>
+                                        <td><?= $assessment->project; ?></td>
+                                        <td><?= $assessment->course; ?></td>
+                                        <td><?= $assessment->subject; ?></td>
+                                        <td><?= $assessment->assignment; ?></td>
+                                        <td><?= $assessment->assignment_marks; ?></td>
+                                        <td><?= $assessment->passing_marks; ?></td>
+                                        <td><?= $assessment->date; ?></td>
+                                        <td><?= $assessment->Faculty; ?></td>
+                                        <td><?= $assessment->file_path; ?></td>
+                                        <td> </td>
+
+                                    </tr>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <tr>
+                                    <td colspan="11" class="text-center">Hey..!! No DATA </td>
+                                </tr>
+                            <?php endif; ?>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
 
         </section>
     </div>
