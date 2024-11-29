@@ -169,6 +169,9 @@
                         <?php } ?>
                     </select> -->
 
+
+
+
                         <div class="form-group col-md-4">
                             <label for="gross_amount">Project :</label> &nbsp;
                             <select name="project_id" type="text" class="form-control" id="projectCombo" required
@@ -176,17 +179,36 @@
                                 <option>Select Project</option>
                                 <?php
                                 foreach ($branch as $v) { ?>
-                                    <option value="<?php echo $v['id']; ?>">
+
+                                    <option value="<?php echo $v['name']; ?>">
+
+
                                         <?php echo $v['name']; ?>
                                     </option>
                                 <?php } ?>
                             </select>
                         </div>
+
+
+
+
+
+
                         <div class="form-group col-md-4">
                             <label for="company_name">Course :</label>
                             <select name="course_id" type="text" id="coursesAppender" class="form-control" required>
                             </select>
                         </div>
+
+
+
+
+
+
+
+
+
+
 
                         <div class="form-group col-md-4">
                             <label for="subject">Select Subject:</label>
@@ -194,7 +216,7 @@
                                 <option value="">--Select Subject--</option>
                                 <?php if (!empty($subjects)) : ?>
                                     <?php foreach ($subjects as $subject) : ?>
-                                        <option value="<?= $subject->id ?>"><?= $subject->subject_title ?></option>
+                                        <option value="<?= $subject->subject_title ?>"><?= $subject->subject_title ?></option>
                                     <?php endforeach; ?>
                                 <?php else : ?>
                                     <option value="">No Subjects Available</option>
@@ -216,7 +238,7 @@
                             <option selected disabled>Assignment_Type</option>
                             <option value="MCQ">M C Q</option>
                             <option value="Quiz">Quiz</option>
-                            
+
                         </select>
                     </div>
 
@@ -252,7 +274,7 @@
                             $counseller_details = $query->result_array();
                             foreach ($counseller_details as $v) {
                             ?>
-                                <option value="<?php echo $v['id']; ?>">
+                                <option value="<?php echo $v['firstname']; ?>">
                                     <?php echo $v['firstname']; ?>
                                 </option>
                             <?php } ?>

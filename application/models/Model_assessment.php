@@ -34,10 +34,21 @@ class Model_assessment extends CI_Model
     public function get_all_assessments()
     {
         // Fetch all rows from the assessments table
-        // $query = $this->db->get('assessments');
-        //  return $query->result(); // Return as an array
-        // print_r($query->result());
+        $query = $this->db->get('assessments');
 
-        return $this->db->select('*')->from('assessments')->get()->result();
+        return $query->result(); // Returns as an array of objects
+
+
+
+
+
+    }
+
+
+    // DELETE ASSESSMENTS 
+    public function delete_assessment($id)
+    {
+        $this->db->where('id', $id);
+        return $this->db->delete('assessments'); // 'assessments' is your table name
     }
 }
