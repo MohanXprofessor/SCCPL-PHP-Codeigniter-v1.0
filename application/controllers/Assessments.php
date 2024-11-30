@@ -156,4 +156,113 @@ class Assessments extends Admin_Controller
             }
         }
     }
+
+
+
+    // READ PDF AND EXCEL FILE 
+
+    public function assess_viewfiles()
+    {
+        $this->render_template('assessments/assess_viewfile', $this->$data);
+    }
+
+    public function addenquirybulk()
+    {
+        $this->form_validation->set_rules('project_id', 'Project Id', 'trim|required');
+        $this->form_validation->set_rules('course_id', 'Course Id', 'trim|required');
+        $this->form_validation->set_rules('counseller_id', 'Faculty/Counseller Id', 'trim|required');
+        $this->form_validation->set_rules('status', 'Status', 'trim|required');
+        $this->form_validation->set_rules('followup_date', 'Followup Date', 'trim|required');
+        $this->form_validation->set_rules('date', 'Date', 'trim|required');
+
+        if ($this->form_validation->run() == TRUE) {
+
+            $fileFieldName = "bulk_file";
+
+            if ($this->validateFormFile($fileFieldName)) {
+                if ($_FILES[$fileFieldName]["type"] == "text/csv") {
+                    $file = fopen($_FILES[$fileFieldName]["tmp_name"], "r");
+                    $i = 0;
+                    $isValid = false;
+                    $isUpdated = false;
+                    while (($getData = fgetcsv($file, 10000, ",")) !== FALSE) {
+
+                        if (sizeof($getData) != 9)
+                            break;
+
+                        if ($i != 0 && $isValid) {
+                            $pid = $this->input->post('project_id');
+                            $cid = $this->input->post('course_id');
+                            $cnsid = $this->input->post('counseller_id');
+                            $status = $this->input->post('status');
+                            $date = $this->input->post('date');
+                            $stdName = $getData[0];
+                            $stdMobile = $getData[1];
+                            $stdEmail = $getData[2];
+                            $address = $getData[3];
+                            $qualification = $getData[4];
+                            $specialization = $getData[5];
+                            $collegeName = $getData[6];
+                            $remark = $getData[7];
+                            $gender = $getData[8];
+
+                            if (!empty($stdName) && !empty($stdMobile) && !empty($stdEmail) && !empty($address) && !empty($qualification) && !empty($specialization) && !empty($collegeName) && !empty($remark) && $gender != "") {
+                                $data = array(
+                                    'project_id' => $pid,
+                                    'course_id' => $cid,
+                                    'status' => $status,
+                                    'counseller_id' => $cnsid,
+                                    'student_name' => $stdName,
+                                    'student_email' => $stdEmail,
+                                    'student_mobile' => $stdMobile,
+                                    'student_address' => $address,
+                                    'qualification' => $qualification,
+                                    'specialization' => $specialization,
+                                    'college_name' => $collegeName,
+                                    'remark' => $remark,
+                                    'gender' => $gender,
+                                    'created_at' => (new DateTime($date))->format("Y/m/d H:i:s"),
+                                    'added_by' => $this->userId
+                                );
+                                if ($status == "Next-date")
+                                    $data['next_follow_date'] = $this->input->post('followup_date');
+
+                                $this->model_enquiry->create($data);
+                                $isUpdated = true;
+                            }
+                        } else {
+                            $stdName = trim($getData[0]);
+                            $stdMobile = trim($getData[1]);
+                            $stdEmail = trim($getData[2]);
+                            $address = trim($getData[3]);
+                            $qualification = trim($getData[4]);
+                            $specialization = trim($getData[5]);
+                            $collegeName = trim($getData[6]);
+                            $remark = trim($getData[7]);
+                            $gender = trim($getData[8]);
+
+                            if ($stdName == "Student Name" && $stdMobile == "Student Mobile" && $stdEmail == "Student Email" && $address == "Address" && $qualification == "Highest Qualification" && $specialization == "Specialization" && $collegeName == "College name" && $remark == "Remark" && $gender == "Gender")
+                                $isValid = true;
+                        }
+                        $i++;
+                    }
+                    if ($isUpdated) {
+                        $this->session->set_flashdata('success', 'Enquiry created Successfully!!');
+                        redirect('screeningtest/manage', 'refresh');
+                    } else {
+                        $this->session->set_flashdata('error', 'Unable to submit the enquiry!!');
+                        redirect('enquiry/manage', 'refresh');
+                    }
+                } else {
+                    $this->session->set_flashdata('error', 'Invalid file selected, Please selecte CSV file only!');
+                    redirect('enquiry/manage', 'refresh');
+                }
+            } else {
+                $this->session->set_flashdata('error', 'Please select file!!');
+                redirect('enquiry/manage', 'refresh');
+            }
+        } else {
+            redirect('enquiry/manage', 'refresh');
+        }
+    }
 }

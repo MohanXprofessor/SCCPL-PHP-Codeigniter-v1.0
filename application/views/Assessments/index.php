@@ -283,7 +283,12 @@
 
 
 
-                    <input type="file" name="file" id="file" required>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="company_name">Bulk Enquiry CSV File</label>
+                            <input type="file" class="form-control" name="bulk_file" required>
+                        </div>
+                    </div>
 
 
                     <button type="submit">Submit</button>

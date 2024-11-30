@@ -56,7 +56,7 @@
                             <th>Date</th>
                             <th>Faculty</th>
                             <th>file</th>
-                            <th colspan="3">Action</th>
+                            <th colspan="4">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -79,6 +79,8 @@
                                     <td><?= $assessment->faculty ?></td>
                                     <td><?= $assessment->file_path ?></td>
                                     <td> <button class="btn btn-primary" onclick="viewFile('<?= isset($assessment->file_path) ? $assessment->file_path : '' ?>')">View</button></td>
+                                    <td>
+                                    </td>
                                     <td> <button class="btn btn-info">publish</button></td>
 
                                     <td> <button class="btn btn-danger" onclick="deleteRecord(<?= isset($assessment->id) ? $assessment->id : 'N/A'; ?>)">Delete</button></td>

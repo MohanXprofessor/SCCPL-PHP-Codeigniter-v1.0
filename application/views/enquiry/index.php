@@ -115,7 +115,7 @@ $counseller_details = $query->result_array();
                                             <option value="">Select Faculty</option>
                                             <?php
                                             foreach ($counseller_details as $v) {
-                                                ?>
+                                            ?>
                                                 <option value="<?php echo $v['id']; ?>">
                                                     <?php echo $v['firstname']; ?>
                                                 </option>
@@ -325,7 +325,7 @@ $counseller_details = $query->result_array();
                                     <select name="counseller_id" type="text" class="form-control" required>
                                         <?php
                                         foreach ($counseller_details as $v) {
-                                            ?>
+                                        ?>
                                             <option value="<?php echo $v['id']; ?>">
                                                 <?php echo $v['firstname']; ?>
                                             </option>
@@ -344,7 +344,7 @@ $counseller_details = $query->result_array();
                                 <label for="company_name">Select Status :</label>
                                 <select class="form-control" id="status" name="status"
                                     onchange="validateFollowUpDate(this)">
-                                    <option value="Next-date" slected>Next Followup date</option>
+                                    <option value="Next-date" slected>Next Follow up date</option>
                                     <option value="Confirm">Confirm</option>
                                     <option value="Ignore">Ignore</option>
                                 </select>
@@ -416,7 +416,7 @@ $counseller_details = $query->result_array();
     var manageTable;
     var base_url = "<?php echo base_url(); ?>";
 
-    $(document).ready(function () {
+    $(document).ready(function() {
         loadCourses($("#projectCombo"), "#coursesAppender");
         loadCourses($("#projectCombo2"), "#coursesAppender2");
         $("#mainOrdersNav").addClass('active');
@@ -430,9 +430,9 @@ $counseller_details = $query->result_array();
             "scrollX": true,
             order: [],
             dom: 'Bfrtip',
-              buttons: [
+            buttons: [
                 'copy', 'csv', 'excel', 'pdf', 'print'
-              ]
+            ]
         });
 
     });
@@ -447,7 +447,7 @@ $counseller_details = $query->result_array();
             type: "get",
             data: {},
             dataType: "json",
-            success: function (res) {
+            success: function(res) {
                 if (res.status) {
                     $(ele).html("<option value=''>Please select course!</option>" + res.message);
                 } else {
@@ -463,7 +463,7 @@ $counseller_details = $query->result_array();
     // remove functions 
     function removeFunc(id) {
         if (id) {
-            $("#removeForm").on('submit', function () {
+            $("#removeForm").on('submit', function() {
 
                 var form = $(this);
 
@@ -473,9 +473,11 @@ $counseller_details = $query->result_array();
                 $.ajax({
                     url: form.attr('action'),
                     type: form.attr('method'),
-                    data: { id: id },
+                    data: {
+                        id: id
+                    },
                     dataType: 'json',
-                    success: function (response) {
+                    success: function(response) {
 
                         manageTable.ajax.reload(null, false);
 
